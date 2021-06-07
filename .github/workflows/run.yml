@@ -39,8 +39,8 @@ jobs:
           sudo apt-get -y install squid3 
           sudo mv squid.conf /etc/squid/squid.conf
           sudo mv passwords /etc/squid/passwords
-          chmod 777 /etc/squid/squid.conf
-          chmod 777 /etc/squid/passwords
+          sudo chmod 777 /etc/squid/squid.conf
+          sudo chmod 777 /etc/squid/passwords
           sudo service squid restart
 
 
