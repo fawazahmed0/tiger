@@ -9,6 +9,7 @@ jobs:
     name: Deploy real prod
     runs-on: macos-12
     steps:
+      - uses: actions/checkout@v3
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
