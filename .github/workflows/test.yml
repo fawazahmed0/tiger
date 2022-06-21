@@ -15,7 +15,7 @@ jobs:
         run: |
           REPO="https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.wiki.git"
           git clone $REPO .
-          echo "hello world" > myfirst.md
+          echo "hello world" > second.md
           git config --global user.email github-actions@github.com
           git config --global user.name github-actions
           git add -A
