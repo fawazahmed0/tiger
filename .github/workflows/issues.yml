@@ -15,5 +15,4 @@ jobs:
         with:
           issue-number: ${{ github.event.issue.number }}
           body: |
-            Build output
-            ${{ steps.build.outputs.build-log }}
+            Paid support is available if you need faster resolution. For paid support, please write mail to youtube-uploader@datascraping.pp.ua
