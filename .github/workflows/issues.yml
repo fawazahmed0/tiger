@@ -1,0 +1,22 @@
+name: CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for branch 1 and on start directory, command.txt file changes or by manually running the workflow from actions tab
+on:
+
+
+  workflow_dispatch:
+
+  issue_comment:
+    types: [created]
+
+
+jobs:
+  commentCreated:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add reaction
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          comment-id: ${{ github.event.comment.id }}
+          reactions: eyes
