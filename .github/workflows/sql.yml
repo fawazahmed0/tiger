@@ -40,7 +40,7 @@ jobs:
           cmake --build .
           sudo make install
           cd ../../sqlite
-          ./configure --enable-all
+          CFLAGS="-Os -DSQLITE_ENABLE_ICU `pkg-config --libs --cflags icu-uc icu-io`" ./configure --enable-all
           make -Os CFLAGS="-Os -DSQLITE_ENABLE_ICU `pkg-config --libs --cflags icu-uc icu-io`" sqlite3.c
           cd ext/wasm
           make -Os CFLAGS="-Os -DSQLITE_ENABLE_ICU `pkg-config --libs --cflags icu-uc icu-io`"
