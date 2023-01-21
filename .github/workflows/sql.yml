@@ -27,19 +27,19 @@ jobs:
           sudo apt update && sudo apt install libicu-dev libsqlite3-dev -y
           git clone https://github.com/sqlite/sqlite.git
           git clone https://github.com/emscripten-core/emsdk.git
-          git clone https://github.com/WebAssembly/wabt.git
+          git clone --recursive https://github.com/WebAssembly/wabt
           cd emsdk
           ./emsdk install latest
           ./emsdk activate latest
           source emsdk_env.sh
           cd ../wabt
+          git submodule update --init
           mkdir build
           cd build
           cmake ..
           cmake --build .
-          cd ..
           sudo make install
-          cd ../sqlite
+          cd ../../sqlite
           ./configure --enable-all
           make CFLAGS="-DSQLITE_ENABLE_ICU `pkg-config --libs --cflags icu-uc icu-io`" sqlite3.c
           cd ext/wasm
