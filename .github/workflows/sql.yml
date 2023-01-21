@@ -33,7 +33,11 @@ jobs:
           ./emsdk activate latest
           source emsdk_env.sh
           cd ../wabt
-          make
+          mkdir build
+          cd build
+          cmake ..
+          cmake --build .
+          cd ..
           sudo make install
           cd ../sqlite
           ./configure --enable-all
