@@ -45,6 +45,9 @@ jobs:
           cd ext/wasm
           make CFLAGS="-Os -DSQLITE_ENABLE_ICU `pkg-config --libs --cflags icu-uc icu-io`"
 
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3  
+        
       - name: first
         shell: bash
         run: |
