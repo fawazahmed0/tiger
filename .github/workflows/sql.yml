@@ -41,9 +41,9 @@ jobs:
           sudo make install
           cd ../../sqlite
           ./configure --enable-all
-          make CFLAGS="-Oz -DSQLITE_ENABLE_ICU `pkg-config --libs --cflags icu-uc icu-io`" sqlite3.c
+          make CFLAGS="-O3 -DSQLITE_ENABLE_ICU `pkg-config --libs --cflags icu-uc icu-io`" sqlite3.c
           cd ext/wasm
-          make CFLAGS="-Oz -DSQLITE_ENABLE_ICU `pkg-config --libs --cflags icu-uc icu-io`"
+          make CFLAGS="-O3 -DSQLITE_ENABLE_ICU `pkg-config --libs --cflags icu-uc icu-io`"
 
       - name: first
         shell: bash
