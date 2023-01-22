@@ -40,16 +40,15 @@ jobs:
           cmake --build .
           sudo make install
           cd ../../sqlite
-          #CFLAGS="-Os -DSQLITE_ENABLE_ICU `pkg-config --libs --cflags icu-uc icu-io`" ./configure --enable-all
-          ./configure --enable-all
-          #make CFLAGS="-Os -DSQLITE_ENABLE_ICU `pkg-config --libs --cflags icu-uc icu-io`" sqlite3.c
-          make sqlite3.c
+          CFLAGS="-DSQLITE_ENABLE_ICU `pkg-config --libs --cflags icu-uc icu-io`" ./configure --enable-all
+          #./configure --enable-all
+          make CFLAGS="-DSQLITE_ENABLE_ICU `pkg-config --libs --cflags icu-uc icu-io`" sqlite3.c
+          #make sqlite3.c
           cd ext/wasm
-          #make CFLAGS="-Os -DSQLITE_ENABLE_ICU `pkg-config --libs --cflags icu-uc icu-io`"
-          make
+          make CFLAGS="-DSQLITE_ENABLE_ICU `pkg-config --libs --cflags icu-uc icu-io`"
+          #make
 
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3  
+
         
       - name: first
         shell: bash
