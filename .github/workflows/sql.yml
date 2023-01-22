@@ -45,7 +45,7 @@ jobs:
           make CFLAGS="-DSQLITE_ENABLE_ICU `pkg-config --libs --cflags icu-uc icu-io`" sqlite3.c
           #make sqlite3.c
           cd ext/wasm
-          make CFLAGS="-DSQLITE_ENABLE_ICU `pkg-config --libs --cflags icu-uc icu-io`"
+          make CFLAGS="-DSQLITE_ENABLE_ICU `pkg-config --libs --cflags icu-uc icu-io`" oz
           #make
 
 
