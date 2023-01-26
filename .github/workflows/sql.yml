@@ -1,0 +1,66 @@
+name: SQL
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for branch 1 and on start directory, command.txt file changes or by manually running the workflow from actions tab
+on:
+
+
+  workflow_dispatch:
+
+
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+
+
+
+      - name: first
+        shell: bash
+        run: |
+          sudo apt update && sudo apt install libicu-dev libsqlite3-dev -y
+          git clone https://github.com/sqlite/sqlite.git
+          git clone https://github.com/emscripten-core/emsdk.git
+          git clone --recursive https://github.com/WebAssembly/wabt
+          cd emsdk
+          ./emsdk install latest
+          ./emsdk activate latest
+          source emsdk_env.sh
+          cd ../wabt
+          git submodule update --init
+          mkdir build
+          cd build
+          cmake ..
+          cmake --build .
+          sudo make install
+          cd ../../sqlite
+          CFLAGS="-DSQLITE_ENABLE_ICU `pkg-config --libs --cflags icu-uc icu-io`" ./configure --enable-all
+          #./configure --enable-all
+          make CFLAGS="-DSQLITE_ENABLE_ICU `pkg-config --libs --cflags icu-uc icu-io`" sqlite3.c
+          #make sqlite3.c
+          cd ext/wasm
+          make CFLAGS="-DSQLITE_ENABLE_ICU `pkg-config --libs --cflags icu-uc icu-io`" oz
+          #make
+
+
+        
+      - name: first
+        shell: bash
+        run: |
+          pwd
+
+
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v3
+        with:
+          name: code-coverage-report
+          path: sqlite/ext/wasm
+
+
+

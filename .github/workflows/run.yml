@@ -19,7 +19,9 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3  
+        uses: mxschmitt/action-tmate@v3 
+        with:
+          limit-access-to-actor: true
 
       # Partial clone
       - name: Partial clone
