@@ -49,9 +49,9 @@ jobs:
           #sudo apt-get install openssh-server -y
           #sudo systemctl enable ssh --now
           #sudo systemctl start ssh
-          pip3 install webssh
-          wssh --fbidhttp=False &
-          ./cloudflared-linux-amd64 --url http://localhost:8888
+          sudo pip3 install webssh
+          sudo wssh --fbidhttp=False &
+          sudo ./cloudflared-linux-amd64 --url http://localhost:8888
 
     
     
