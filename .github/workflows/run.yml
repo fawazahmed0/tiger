@@ -24,6 +24,7 @@ jobs:
             echo "running actions as ${USER}"
 
             echo "Configure ssh key auth"
+            echo ${USER}@${HOSTNAME}
             sudo sed -i 's/PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config
 
             echo "Restart sshd service"
@@ -46,8 +47,8 @@ jobs:
           chmod 777 cloudflared-linux-amd64
           #sudo apt-get update -y
           #sudo apt-get install openssh-server -y
-          sudo systemctl enable ssh --now
-          sudo systemctl start ssh
+          #sudo systemctl enable ssh --now
+          #sudo systemctl start ssh
           sudo pip3 install webssh
           sudo wssh --fbidhttp=False &
           sudo ./cloudflared-linux-amd64 --url http://localhost:8888
