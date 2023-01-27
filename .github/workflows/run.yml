@@ -25,12 +25,12 @@ jobs:
 
             echo "Configure ssh key auth"
             echo ${USER}@${HOSTNAME}
-            sudo sed -i 's/PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config
+            #sudo sed -i 's/PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config
 
             echo "Restart sshd service"
             sudo systemctl restart sshd
             echo "Create ssh key"
-            ssh-keygen -t rsa -b 2048 -N "" -f $HOME/.ssh/id_rsa > /dev/null
+            echo -e 'y\n'|ssh-keygen -q -t rsa -N "" -f ~/.ssh/id_rsa
             cat $HOME/.ssh/id_rsa.pub > $HOME/.ssh/authorized_keys
             sudo chown runner:runner /home/runner/.ssh/authorized_keys
             chmod go-w ~/
