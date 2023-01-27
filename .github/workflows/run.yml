@@ -19,8 +19,8 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     
-      # Partial clone
-      - name: upterm
+
+      - name: ssh
         shell: bash
         run: |
           wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64
