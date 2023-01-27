@@ -19,7 +19,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3 
+        uses: lhotari/action-upterm@v1
         with:
           limit-access-to-actor: false
           
