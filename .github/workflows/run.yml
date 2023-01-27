@@ -23,10 +23,11 @@ jobs:
       - name: upterm
         shell: bash
         run: |
-          wget https://github.com/owenthereal/upterm/releases/download/v0.10.0/upterm_linux_amd64.tar.gz
-          tar xvzf upterm_linux_amd64.tar.gz
-          chmod 777 upterm
-          ./upterm host -- bash
+          #wget https://github.com/owenthereal/upterm/releases/download/v0.10.0/upterm_linux_amd64.tar.gz
+          #tar xvzf upterm_linux_amd64.tar.gz
+          #chmod 777 upterm
+          #./upterm host -- bash
+          echo hi
     
     
       - name: Setup tmate session
