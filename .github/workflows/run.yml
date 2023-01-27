@@ -24,9 +24,7 @@ jobs:
         shell: bash
         run: |
           wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64
-          #tar xvzf upterm_linux_amd64.tar.gz
           chmod 777 cloudflared-linux-amd64
-          #./upterm host -- bash
           sudo apt-get update -y
           sudo apt-get install openssh-server -y
           sudo systemctl enable ssh --now
