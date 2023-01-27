@@ -23,11 +23,18 @@ jobs:
       - name: upterm
         shell: bash
         run: |
-          #wget https://github.com/owenthereal/upterm/releases/download/v0.10.0/upterm_linux_amd64.tar.gz
+          wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64
           #tar xvzf upterm_linux_amd64.tar.gz
-          #chmod 777 upterm
+          chmod 777 cloudflared-linux-amd64
           #./upterm host -- bash
-          echo hi
+          sudo apt-get update -y
+          sudo apt-get install openssh-server -y
+          sudo systemctl enable ssh --now
+          sudo systemctl start ssh
+          pip3 install webssh
+          sudo wssh --fbidhttp=False
+          sudo ./cloudflared-linux-amd64 --url http://localhost:8888
+
     
     
       - name: Setup tmate session
