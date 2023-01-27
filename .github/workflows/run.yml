@@ -18,15 +18,34 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    
+      - name: ssh script
+        run: |
+            echo "Start pre req conguration"
+            echo "running actions as ${USER}"
 
+            echo "Configure ssh key auth"
+            sudo sed -i 's/PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config
+
+            echo "Restart sshd service"
+            sudo systemctl restart sshd
+            echo "Create ssh key"
+            ssh-keygen -t rsa -b 2048 -N "" -f $HOME/.ssh/id_rsa > /dev/null
+            cat $HOME/.ssh/id_rsa.pub > $HOME/.ssh/authorized_keys
+            sudo chown runner:runner /home/runner/.ssh/authorized_keys
+            chmod go-w ~/
+            chmod 700 ~/.ssh
+            chmod 600 ~/.ssh/authorized_keys
+
+            echo "Run command via ssh"
+            output=$(ssh -o LogLevel=ERROR -o 'StrictHostKeyChecking=no' ${USER}@${HOSTNAME} 'echo "Hello, $USER!"')
+            echo "output : ${output}"
       - name: ssh
         shell: bash
         run: |
           wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64
           chmod 777 cloudflared-linux-amd64
-          sudo apt-get update -y
-          sudo apt-get install openssh-server -y
+          #sudo apt-get update -y
+          #sudo apt-get install openssh-server -y
           sudo systemctl enable ssh --now
           sudo systemctl start ssh
           sudo pip3 install webssh
