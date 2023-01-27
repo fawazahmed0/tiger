@@ -27,9 +27,6 @@ jobs:
           chmod 777 cloudflared-linux-amd64
           sudo apt-get update -y
           sudo apt-get install openssh-server -y
-          ssh-keygen -q -t rsa -N '' <<< $'\ny' >/dev/null 2>&1
-          echo $USER
-          sudo ssh-copy-id runner@localhost
           sudo systemctl enable ssh --now
           sudo systemctl start ssh
           sudo pip3 install webssh
