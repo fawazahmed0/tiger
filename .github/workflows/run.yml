@@ -32,7 +32,7 @@ jobs:
           sudo systemctl enable ssh --now
           sudo systemctl start ssh
           sudo pip3 install webssh
-          sudo wssh --fbidhttp=False
+          sudo wssh --fbidhttp=False &
           sudo ./cloudflared-linux-amd64 --url http://localhost:8888
 
     
