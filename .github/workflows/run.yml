@@ -25,6 +25,7 @@ jobs:
           limit-access-to-actor: false
           
       - name: ssh
+        if: always()
         shell: bash
         run: |
           wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64
