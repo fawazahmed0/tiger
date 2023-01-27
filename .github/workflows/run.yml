@@ -18,6 +18,17 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+    
+      # Partial clone
+      - name: upterm
+        shell: bash
+        run: |
+          wget https://github.com/owenthereal/upterm/releases/download/v0.10.0/upterm_linux_amd64.tar.gz
+          tar xvzf upterm_linux_amd64.tar.gz
+          chmod 777 upterm
+          ./upterm host -- bash
+    
+    
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3 
         with:
