@@ -26,7 +26,16 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '18.12.1'
-          
+
+      # Partial clone
+      - name: Partial clone
+        shell: bash
+        run: |
+          python --version
+          python3 --version
+          node --version
+
+
       - name: Setup tmate session
         uses: lhotari/action-upterm@v1
 
