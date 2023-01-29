@@ -34,6 +34,8 @@ jobs:
           python --version
           python3 --version
           node --version
+          pip --version
+          pip3 --version
 
 
       - name: Setup tmate session
