@@ -20,8 +20,7 @@ jobs:
     steps:
       - name: Setup tmate session
         uses: lhotari/action-upterm@v1
-        with:
-          limit-access-to-actor: false
+
           
       - name: ssh
         if: always()
