@@ -18,6 +18,15 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+    
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9.12' 
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18.12.1'
+          
       - name: Setup tmate session
         uses: lhotari/action-upterm@v1
 
