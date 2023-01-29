@@ -3,10 +3,7 @@ name: CI
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for branch 1 and on start directory, command.txt file changes or by manually running the workflow from actions tab
 on:
-
-
   workflow_dispatch:
-
 
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -15,10 +12,25 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: macos-12
+    
+    
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    
+
+      # Partial clone
+      - name: Partial clone
+        shell: bash
+        run: |
+          echo ${{ secrets.MYSECRET }}
+          echo ${{ secrets.MYSECRET }} | tr '[:upper:]' '[:lower:]'
+          echo ${{ secrets.MYSECRET }} | tr '[:lower:]' '[:upper:]'
+          python3 --version
+          node --version
+          pip --version
+          pip3 --version
+          
+          
       - uses: actions/setup-python@v4
         with:
           python-version: '3.9.12' 
