@@ -18,6 +18,14 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
 
+
+      - run: echo hello > world.txt
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact
+          path: world.txt
+
       # Partial clone
       - name: Partial clone
         shell: bash
