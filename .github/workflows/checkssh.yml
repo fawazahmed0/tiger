@@ -1,0 +1,60 @@
+name: BuildFiles
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for branch 1 and on start directory, command.txt file changes or by manually running the workflow from actions tab
+on:
+  schedule:
+    - cron: '50 3 * * 1-5'
+
+  workflow_dispatch:
+
+env: # Or as an environment variable
+  U_ONE: ${{ secrets.U_ONE }}
+
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: macos-12
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+
+      - uses: actions/checkout@v3
+        with:
+          ssh-key: ${{ secrets.SSH_REPO_DEPLOY_PRIVATE_KEY }}
+          repository: ${{ secrets.REPO_NAME }}
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9.12' 
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18.12.1'
+
+      - name: Install dependencies
+        shell: bash
+        run: |
+          brew install tesseract
+          brew install tesseract-lang
+          brew install poppler
+
+      - name: Run Program
+        shell: bash
+        run: |
+          node test.js > logfile.txt 2>&1
+
+
+      # commiting and pushing changes
+      - name: commit and push
+        if: always()
+        shell: bash
+        run: |
+          git config --global user.email github-actions@github.com
+          git config --global user.name github-actions
+          git add -A
+          git commit -m 'Generated Files'
+          git push
