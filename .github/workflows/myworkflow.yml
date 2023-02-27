@@ -17,4 +17,4 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     - name: Setup upterm session
-      uses: lhotari/action-upterm@v1
+      uses: mxschmitt/action-tmate@v3
