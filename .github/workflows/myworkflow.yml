@@ -14,7 +14,14 @@ jobs:
     # The type of runner that the job will run on
     runs-on: macos-12
 
+
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+    - name: install
+      shell: bash
+      run: |
+        sudo apt-get update
+        sudo apt-get -y install ncdu
+    
     - name: Setup upterm session
       uses: mxschmitt/action-tmate@v3
