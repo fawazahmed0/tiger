@@ -13,4 +13,6 @@ jobs:
         run: |
           echo "action_state=yellow" >> "$GITHUB_ENV"
           
-      - run: echo ${{ steps.color-selector.outputs.action_state }}
+      - run: |
+         echo ${{ action_state }}
+         echo ${{ steps.color-selector.outputs.action_state }}
