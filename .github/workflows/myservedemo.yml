@@ -9,7 +9,9 @@ jobs:
         run: |
           echo "mycmd=hello" >> $GITHUB_ENV
           echo "myargs=world" >> $GITHUB_ENV
-          echo "$mycmd" "$env.myargs"
+      - name: Print command with args for debug
+        shell: bash
+        run: echo ${{ env.mycmd }} ${{ env.myargs }}
   job2:
     runs-on: ubuntu-latest
     steps:
