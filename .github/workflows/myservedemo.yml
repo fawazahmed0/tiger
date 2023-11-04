@@ -11,8 +11,8 @@ jobs:
       - name: set color
         id: color-selector
         run: |
-          echo "action_state=yellow" >> "$GITHUB_ENV"
+          echo "mynewdata=yellow" >> "$GITHUB_ENV"
           
       - run: |
-         echo ${{ action_state }}
-         echo ${{ steps.color-selector.outputs.action_state }}
+         echo ${{ mynewdata }}
+         echo ${{ steps.color-selector.outputs.mynewdata }}
