@@ -9,7 +9,7 @@ jobs:
         run: |
           echo "mycmd=hello" >> $GITHUB_ENV
           echo "myargs=world" >> $GITHUB_ENV
-          echo ${{ env.mycmd }} ${{ env.myargs }}
+          echo "$mycmd" "$env.myargs"
   job2:
     runs-on: ubuntu-latest
     steps:
