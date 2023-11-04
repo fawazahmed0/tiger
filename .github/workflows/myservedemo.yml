@@ -15,4 +15,5 @@ jobs:
           
       - run: |
          echo "$mynewdata"
-         echo ${{ steps.color-selector.outputs.mynewdata }}
+         echo "$steps.color-selector.outputs.mynewdata"
+
