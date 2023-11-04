@@ -2,18 +2,23 @@ name: myservedemo
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: workflow_dispatch
 jobs:
-  Explore-GitHub-Actions:
+  job1:
+    runs-on: ubuntu-latest
+    # Map a step output to a job output
+    outputs:
+      output1: ${{ steps.step1.outputs.test }}
+      output2: ${{ steps.step2.outputs.test }}
+    steps:
+      - id: step1
+        run: echo "::set-output name=test::hello"
+      - id: step2
+        run: echo "::set-output name=test::world"
+  job2:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-      - name: set color
-        id: color-selector
-        run: |
-          echo "mynewdata=yellow" >> "$GITHUB_ENV"
-          
-      - run: |
-         echo "$mynewdata"
-         echo "$steps.color-selector.outputs.mynewdata"
+      - run: sleep 10
+      - env:
+          OUTPUT1: ${{jobs.job1.outputs.output1}}
+          OUTPUT2: ${{jobs.job1.outputs.output2}}
+        run: echo "$OUTPUT1 $OUTPUT2"
 
