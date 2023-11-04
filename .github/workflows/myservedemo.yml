@@ -14,5 +14,5 @@ jobs:
           echo "mynewdata=yellow" >> "$GITHUB_ENV"
           
       - run: |
-         echo ${{ mynewdata }}
+         echo "$mynewdata"
          echo ${{ steps.color-selector.outputs.mynewdata }}
