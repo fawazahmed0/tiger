@@ -1,2 +1,2 @@
 # tiger
-[link](/fawazahmed0/currency-api)
+[link](//fawazahmed0/currency-api)
