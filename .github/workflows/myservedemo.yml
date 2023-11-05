@@ -28,3 +28,4 @@ jobs:
       - shell: bash
         run: |
           cat math-homework.txt
+          sleep 200 &
