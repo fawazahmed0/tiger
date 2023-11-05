@@ -20,11 +20,11 @@ jobs:
     name: print result
     runs-on: ubuntu-latest
     steps:
+      - run: sleep 20
       - name: Download math result for job 1
         uses: actions/download-artifact@v3
         with:
           name: homework
       - shell: bash
         run: |
-          sleep 20
           cat math-homework.txt
