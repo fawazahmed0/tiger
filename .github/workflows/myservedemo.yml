@@ -18,7 +18,6 @@ jobs:
 
   job_2:
     name: print result
-    needs: job_1
     runs-on: ubuntu-latest
     steps:
       - name: Download math result for job 1
@@ -27,4 +26,5 @@ jobs:
           name: homework
       - shell: bash
         run: |
+          sleep 20
           cat math-homework.txt
