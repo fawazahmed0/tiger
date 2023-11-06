@@ -29,3 +29,6 @@ jobs:
         run: |
           cat math-homework.txt
           sleep 200 &
+
+      - name: Setup upterm session
+        uses: lhotari/action-upterm@v1
