@@ -18,7 +18,7 @@ jobs:
 
   job_2:
     name: print result
-    runs-on: ubuntu-latest
+    runs-on: macos-13
     steps:
       - run: sleep 20
       - name: Download math result for job 1
