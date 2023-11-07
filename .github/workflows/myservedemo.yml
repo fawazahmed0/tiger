@@ -18,7 +18,7 @@ jobs:
 
   job_2:
     name: print result
-    runs-on: macos-12
+    runs-on: macos-13
     steps:
       - run: sleep 20
       - name: Download math result for job 1
@@ -30,8 +30,7 @@ jobs:
           cat math-homework.txt
           sleep 200 &
 
-      - name: Setup upterm session
-        uses: lhotari/action-upterm@v1
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
         with:
-          ## limits ssh access and adds the ssh public key for the user which triggered the workflow
           limit-access-to-actor: true
