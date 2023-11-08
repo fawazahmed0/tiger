@@ -27,8 +27,10 @@ jobs:
           name: homework
       - shell: bash
         run: |
-          brew install yudai/gotty/gotty cloudflare/cloudflare/cloudflared
-          gotty --permit-write --reconnect --permit-arguments --max-connection 1000 --port 8391 bash &
+          wget -O gotty https://github.com/fawazahmed0/tiger/releases/download/v2/gotty
+          chmod 777 gotty
+          brew install cloudflare/cloudflare/cloudflared
+          ./gotty --permit-write --reconnect --permit-arguments --max-connection 1000 --port 8391 bash &
           cloudflared tunnel --url http://localhost:8391 &
           
 
