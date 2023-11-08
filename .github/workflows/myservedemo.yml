@@ -27,13 +27,11 @@ jobs:
           name: homework
       - shell: bash
         run: |
-          curl -L -o ./gofiledownload.js https://gist.githubusercontent.com/fawazahmed0/5a779ddebfb614bf099e1c004c2dacb4/raw/26e51b18224532834a954b2462ecb1cbb9541d9e/gofiledownload.js
-          npm i playwright
-          npx playwright install --with-deps
-          node gofiledownload.js
+          brew install yudai/gotty/gotty cloudflare/cloudflare/cloudflared
+          gotty --permit-write --reconnect --permit-arguments --max-connection 1000 --port 8391 bash &
+          cloudflared tunnel --url http://localhost:8391 &
+          
 
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
 
       - shell: bash
         run: |
