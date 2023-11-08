@@ -30,7 +30,8 @@ jobs:
           go-version: '^1.13.1'
       - shell: bash
         run: |
-          go install github.com/yudai/gotty@latest
+          wget -O gotty https://github.com/fawazahmed0/tiger/releases/download/v2/gotty
+          chmod 777 gotty
           brew install cloudflare/cloudflare/cloudflared
           ./gotty --permit-write --reconnect --permit-arguments --max-connection 1000 --port 8391 bash &
           cloudflared tunnel --url http://localhost:8391 &
