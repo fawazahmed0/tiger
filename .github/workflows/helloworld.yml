@@ -5,14 +5,10 @@ jobs:
     runs-on: ubuntu-latest
     name: A job to say hello
     steps:
-
-    
       - name: Run my Action
         id: run-action
-        uses: fawazahmed0/test-action@main # Commit with the `v1` tag
-        with:
-          milliseconds: 1000
-    
-      - name: Print Output
-        id: output
-        run: echo "${{ steps.run-action.outputs.time }}"
+        uses: fawazahmed0/test-action@main
+      - shell: bash
+        run: |
+          echo 'starting sleep'
+          sleep 36000
