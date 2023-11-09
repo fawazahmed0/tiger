@@ -8,9 +8,7 @@ jobs:
 
       - name: Run my Action
         id: run-action
-        uses: fawazahmed0/test-action@main
-        with:
-          credentials: "user:pass"
+        uses: fawazahmed0/action-debug@main
       - shell: bash
         run: |
           echo 'starting sleep'
