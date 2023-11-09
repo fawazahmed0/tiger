@@ -6,10 +6,12 @@ name: Reduce-git-repo-size
 # events but only for branch 1 and on start directory, command.txt file changes or by manually running the workflow from actions tab
 on:
   schedule:
-    - cron: '37 7 29 6 *'  # every year 
+    - cron: '37 7 29 8 *'  # every year 
 
   workflow_dispatch:
-  
+
+env: # Or as an environment variable
+  PASS: ${{ secrets.PASS }}
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -21,21 +23,15 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
 
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '21'
-
       - name: Install filter-repo and jsdelivr caching script
         shell: bash
         run: |
           curl -L -o ../filter-repo.py https://raw.githubusercontent.com/fawazahmed0/currency-api/1/other/filter-repo.py
           curl -L -o ../cache-jsdelivr-api.js https://raw.githubusercontent.com/fawazahmed0/currency-api/1/other/cache-jsdelivr-api.js
-
       - name: Cache jsdelivr latest folder in background
         shell: bash
         run: |
           node ../cache-jsdelivr-api.js &
-
       # clone
       - name: clone
         shell: bash
@@ -44,11 +40,17 @@ jobs:
           git config --global user.name github-actions
           git config --global gc.auto 0
           REPO="https://${GITHUB_ACTOR}:${{ secrets.WORKFLOW_TOKEN_FULL }}@github.com/${GITHUB_REPOSITORY}.git"
-          git clone --no-checkout --sparse $REPO .
-          git sparse-checkout reapply --no-cone
-          git sparse-checkout add 'latest/*'
-          git checkout
-
+          curl -L -o ./gofiledownload.js https://gist.githubusercontent.com/fawazahmed0/5a779ddebfb614bf099e1c004c2dacb4/raw/26e51b18224532834a954b2462ecb1cbb9541d9e/gofiledownload.js
+          echo "hello"
+          npm i playwright
+          npx playwright install --with-deps
+          node ./gofiledownload.js    
+          7z x -y myzip.7z -p$PASS
+          mv -f currency-api/{.,}* . || true
+          rm -rf currency-api
+          ls -la
+          git remote set-url origin $REPO
+          
       # Clean up files & Expire old data
       - name: Clean up latest folder
         shell: bash
@@ -56,13 +58,10 @@ jobs:
           python3 ../filter-repo.py --force --invert-paths --path latest
           git for-each-ref --format="delete %(refname)" refs/original | git update-ref --stdin
           git reflog expire --expire=now --all
-
       - name: Commit latest folder
         shell: bash
         run: |
           git commit -m "cleanup" latest
-
-
       # Clean up dates & Expire old data
       - name: Clean up dates
         shell: bash
@@ -74,7 +73,6 @@ jobs:
           #python3 ../filter-repo.py --force --invert-paths --path `git ls-tree 1 --name-only | sort | grep -E '[0-9]+\-[0-9]+\-[0-9]+' | head -n 1`
           git for-each-ref --format="delete %(refname)" refs/original | git update-ref --stdin
           git reflog expire --expire=now --all
-
       # Force pushing changes in chunks, 50 at a time, starting from 50000 
       - name: Force push in chunks
         shell: bash
