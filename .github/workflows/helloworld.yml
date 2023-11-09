@@ -5,11 +5,14 @@ jobs:
     runs-on: ubuntu-latest
     name: A job to say hello
     steps:
-      - name: Hello world action step
-        id: hello
-        uses: fawazahmed0/hello-world-javascript-action@main
+
+    
+      - name: Run my Action
+        id: run-action
+        uses: fawazahmed0/test-action@main # Commit with the `v1` tag
         with:
-          who-to-greet: 'Mona the Octocat'
-      # Use the output from the `hello` step
-      - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
+          milliseconds: 1000
+    
+      - name: Print Output
+        id: output
+        run: echo "${{ steps.run-action.outputs.time }}"
