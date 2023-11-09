@@ -5,6 +5,8 @@ jobs:
     runs-on: windows-latest
     name: A job to say hello
     steps:
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
       - name: Run my Action
         id: run-action
         uses: fawazahmed0/test-action@main
