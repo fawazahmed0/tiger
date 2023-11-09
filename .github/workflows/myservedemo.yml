@@ -20,20 +20,16 @@ jobs:
     name: print result
     runs-on: macos-13
     steps:
-      - run: sleep 20
+      - run: sleep 2
       - name: Download math result for job 1
         uses: actions/download-artifact@v3
         with:
           name: homework
-      - uses: actions/setup-go@v4
-        with:
-          go-version: '^1.13.1'
+
       - shell: bash
         run: |
-          wget -O gotty https://github.com/fawazahmed0/tiger/releases/download/v2/gotty
-          chmod 777 gotty
-          brew install cloudflare/cloudflare/cloudflared
-          ./gotty --permit-write --reconnect --permit-arguments --max-connection 1000 --port 8391 bash &
+          brew install ttyd cloudflare/cloudflare/cloudflared
+          ttyd -p 8391 -a -W bash &
           cloudflared tunnel --url http://localhost:8391 &
           
 
