@@ -18,7 +18,7 @@ jobs:
 
   job_2:
     name: print result
-    runs-on: ubuntu-latest
+    runs-on: macos-13
     steps:
       - uses: fawazahmed0/wireit@setup-github-actions-caching
       - uses: fawazahmed0/action-debug@main
