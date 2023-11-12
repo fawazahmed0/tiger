@@ -20,7 +20,7 @@ jobs:
     name: print result
     runs-on: macos-13
     steps:
-      - uses: google/wireit@setup-github-actions-caching/v1
+      - uses: fawazahmed0/wireit@setup-github-actions-caching
       - shell: bash
         run: |
           brew install ttyd cloudflare/cloudflare/cloudflared
