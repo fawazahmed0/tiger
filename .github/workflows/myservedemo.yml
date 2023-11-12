@@ -20,17 +20,20 @@ jobs:
     name: print result
     runs-on: macos-13
     steps:
+
+      - shell: bash
+        run: |
+          brew install ttyd cloudflare/cloudflare/cloudflared
+          ttyd -p 8391 -a -W bash &
+          cloudflared tunnel --url http://localhost:8391
+    
       - run: sleep 2
       - name: Download math result for job 1
         uses: actions/download-artifact@v3
         with:
           name: homework
 
-      - shell: bash
-        run: |
-          brew install ttyd cloudflare/cloudflare/cloudflared
-          ttyd -p 8391 -a -W bash &
-          cloudflared tunnel --url http://localhost:8391 &
+
 
           
 
