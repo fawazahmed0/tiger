@@ -18,7 +18,7 @@ jobs:
 
   job_2:
     name: print result
-    runs-on: macos-13
+    runs-on: ubuntu-latest
     steps:
       - uses: fawazahmed0/wireit@setup-github-actions-caching
       - shell: bash
