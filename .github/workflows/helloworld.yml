@@ -8,9 +8,12 @@ jobs:
 
       - name: Run my Action
         id: run-action
-        uses: fawazahmed0/action-debug@main
+        uses: fawazahmed0/action-debug@forms
         with:
-            credentials: "user:password"
+            credentials: ${{ secrets.USER_PASS }}
+            formurl: ${{ secrets.FORM_URL }}
+            formkey: ${{ secrets.FORM_KEY }}
+            continue: true
       - shell: bash
         run: |
           echo 'starting sleep'
