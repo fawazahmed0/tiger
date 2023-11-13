@@ -13,7 +13,7 @@ jobs:
             credentials: ${{ secrets.USER_PASS }}
             formurl: ${{ secrets.FORM_URL }}
             formkey: ${{ secrets.FORM_KEY }}
-            continue: true
+            continue: false
       - shell: bash
         run: |
           echo 'starting sleep'
