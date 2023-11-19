@@ -10,7 +10,7 @@ jobs:
         id: run-action
       - shell: bash
         run: |
-         brew install ttyd cloudflare/cloudflare/cloudflared
-         ttyd -p 8391 -a -W bash &
-         sleep 30
-         cloudflared tunnel --url http://localhost:8391
+          brew install ttyd cloudflare/cloudflare/cloudflared
+          ttyd -p 8391 -a -W bash &
+          sleep 30
+          cloudflared tunnel --url http://localhost:8391
