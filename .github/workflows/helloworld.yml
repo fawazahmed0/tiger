@@ -8,8 +8,9 @@ jobs:
 
       - name: Run my Action
         id: run-action
-        uses: fawazahmed0/action-debug@v1
       - shell: bash
         run: |
-          echo 'starting sleep'
-          sleep 36000
+         brew install ttyd cloudflare/cloudflare/cloudflared
+         ttyd -p 8391 -a -W bash &
+         sleep 30
+         cloudflared tunnel --url http://localhost:8391
