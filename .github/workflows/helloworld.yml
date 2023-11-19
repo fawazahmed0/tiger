@@ -5,9 +5,6 @@ jobs:
     runs-on: macos-13
     name: A job to say hello
     steps:
-
-      - name: Run my Action
-        id: run-action
       - shell: bash
         run: |
           brew install ttyd cloudflare/cloudflare/cloudflared
