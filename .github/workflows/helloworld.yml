@@ -5,12 +5,7 @@ jobs:
     runs-on: macos-13
     name: A job to say hello
     steps:
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
+      - uses: fawazahmed0/action-debug@main
       - shell: bash
         run: |
-          brew install ttyd cloudflare/cloudflare/cloudflared
-          cloudflared update
-          ttyd -p 8391 -a -W bash &
           sleep 30
-          cloudflared tunnel --url http://localhost:8391
