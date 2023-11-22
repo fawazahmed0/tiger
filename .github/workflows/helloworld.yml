@@ -9,3 +9,4 @@ jobs:
       - shell: bash
         run: |
           sleep 30
+          cloudflared --help
