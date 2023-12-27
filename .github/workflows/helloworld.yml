@@ -16,7 +16,7 @@ jobs:
           
       - shell: bash
         run: |
-          echo $((${{ env.actionstarttime }} + 100000))
+          echo $((21200 - `date +%s` - ${{ env.actionstarttime }}))
           
       - uses: actions/setup-python@v4
         with:
