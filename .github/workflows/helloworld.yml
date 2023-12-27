@@ -5,6 +5,14 @@ jobs:
     runs-on: macos-13
     name: A job to say hello
     steps:
+      - shell: bash
+        run: |
+          echo "actionstarttime=`date +%s`" >> $GITHUB_ENV
+          
+      - shell: bash
+        run: |
+          echo ${{ env.actionstarttime }}
+          
       - uses: actions/setup-python@v4
         with:
           python-version: '3.11.6'
