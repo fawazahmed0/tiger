@@ -5,24 +5,13 @@ jobs:
     runs-on: macos-13
     name: A job to say hello
     steps:
-      - shell: bash
-        run: |
-          echo "actionstarttime=`date +%s`" >> $GITHUB_ENV
-          
-      - shell: bash
-        run: |
-          echo ${{ env.actionstarttime }}
-          sleep 10
+
 
 
       - uses: actions/setup-node@v4
         with:
           node-version: '21.5.0'
-          cache: 'npm'
-          
-      - shell: bash
-        run: |
-          echo $((21200 - `date +%s` + ${{ env.actionstarttime }}))
+
           
       - uses: actions/setup-python@v4
         with:
