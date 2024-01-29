@@ -9,10 +9,13 @@ jobs:
         continue-on-error: true
         run: |
           exit 1
-      - name: Next job
+      - name: Next job fail
+        run: |
+          exit 1
+      - name: Next job2
         if: failure()
         run: |
-          echo Hello
-      - name: Next job2
-        run: |
           echo Hello2
+      - name: Next job3
+        run: |
+          echo Hello3
