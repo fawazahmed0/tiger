@@ -10,6 +10,7 @@ jobs:
         run: |
           exit 1
       - name: Next job
+        if: failure()
         run: |
           echo Hello
       - name: Next job2
