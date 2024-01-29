@@ -8,7 +8,7 @@ jobs:
       - name: Job fail
         continue-on-error: true
         run: |
-          exit 1 >> logfile.txt 2>&1 || exit 1 >> logfile.txt 2>&1
+          exit 1 >> logfile.txt 2>&1 || echo "baba" >> logfile.txt 2>&1
       - name: Next job fail
         run: |
           cat logfile.txt
