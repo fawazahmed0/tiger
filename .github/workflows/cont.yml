@@ -1,0 +1,17 @@
+on: workflow_dispatch
+
+jobs:
+  cont_job:
+    runs-on: ubuntu-latest
+    name: A job to say hello
+    steps:
+      - name: Job fail
+        continue-on-error: true
+        run: |
+          exit 1
+      - name: Next job
+        run: |
+          echo Hello
+      - name: Next job2
+        run: |
+          echo Hello2
