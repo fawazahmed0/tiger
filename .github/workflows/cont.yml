@@ -5,16 +5,11 @@ jobs:
     runs-on: ubuntu-latest
     name: A job to say hello
     steps:
-      - name: Job fail
-        continue-on-error: true
+      - name: Make a 1GB random binary file
         run: |
-          exit 1 >> logfile.txt 2>&1 || echo "baba" >> logfile.txt 2>&1
-      - name: Next job fail
-        run: |
-          cat logfile.txt
-      - name: Next job2
-        run: |
-          echo Hello2
-      - name: Next job3
-        run: |
-          echo Hello3
+          dd if=/dev/urandom of=my-1gb-file bs=1M count=1000
+      - uses: actions/upload-artifact@v4
+        with:
+          name: my-artifact
+          path: my-1gb-file
+          compression-level: 0 # no compression
