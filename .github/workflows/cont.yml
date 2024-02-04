@@ -7,7 +7,7 @@ jobs:
     steps:
       - name: Make a 1GB random binary file
         run: |
-          dd if=/dev/urandom of=my-1gb-file bs=1M count=1000
+          dd if=/dev/urandom of=my-1gb-file bs=1M count=10000
       - uses: actions/upload-artifact@v4
         with:
           name: my-artifact
