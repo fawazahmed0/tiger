@@ -4,17 +4,7 @@ jobs:
   cont_job:
     runs-on: ubuntu-latest
     name: A job to say hello
-    steps:
-      - name: Maximize build space
-        uses: easimon/maximize-build-space@master
-        with:
-          swap-size-mb: 1024
-          remove-dotnet: 'true'
-          remove-android: 'true'
-          remove-haskell: 'true'
-          remove-codeql: 'true'
-          remove-docker-images: 'true'
-          
+    steps:  
       - name: Make a 1GB random binary file
         run: |
           dd if=/dev/urandom of=my-1gb-file bs=1M count=25000
