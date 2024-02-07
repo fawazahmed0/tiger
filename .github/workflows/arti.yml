@@ -1,17 +1,27 @@
+
 on: workflow_dispatch
 
 jobs:
   cont_job:
     runs-on: ubuntu-latest
     name: A job to say hello
-    steps:  
+    steps:
+      - name: Maximize build space
+        uses: easimon/maximize-build-space@master
+        with:
+          swap-size-mb: 1024
+          remove-dotnet: 'true'
+          remove-android: 'true'
+          remove-haskell: 'true'
+          remove-codeql: 'true'
+          remove-docker-images: 'true'
+          
       - name: Make a 1GB random binary file
         run: |
           dd if=/dev/urandom of=my-1gb-file bs=1M count=25000
-
       - name: zip it
         run: |
-          7z a -m0=Copy values.7z my-1gb-file -mhe=on -ppapa
+          7z a values.7z my-1gb-file -t7z -m0=lzma2 -mx=9 -aoa -mfb=64 -md=32m -ms=on -mhe=on -ppapa
           
       - uses: actions/upload-artifact@v4
         with:
