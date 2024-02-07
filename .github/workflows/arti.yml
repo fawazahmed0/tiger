@@ -24,7 +24,7 @@ jobs:
 
       - name: zip it
         run: |
-          7z a values.7z my-1gb-file -t7z -m0=lzma2 -mx=9 -aoa -mfb=64 -md=32m -ms=on -mhe=on -ppapa
+          7z a values.7z my-1gb-file -t7z -m0=lzma2 -mx=9 -aoa -mfb=64 -md=32m -ms=on -mhe=on -mmt=on -ppapa
           
       - uses: actions/upload-artifact@v4
         with:
