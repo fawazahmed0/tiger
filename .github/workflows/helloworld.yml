@@ -17,6 +17,12 @@ jobs:
       - name: Run Program
         shell: bash
         run: |
-          choco install vscode
+          choco install winget-cli
+
+      - name: Run Program
+        shell: bash
+        run: |
+          winget install -e --id Microsoft.VisualStudioCode
+
       - uses: fawazahmed0/action-debug@main
 
