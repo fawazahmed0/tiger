@@ -25,4 +25,4 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
-          echo ${{ env.action_stat }}
+          echo ${{ env.action_state }}
