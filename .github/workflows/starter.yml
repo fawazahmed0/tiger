@@ -20,9 +20,9 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
-          echo "action_state=`date -I`" >> "$GITHUB_ENV"
+          echo "date_today=`date -I`" >> "$GITHUB_ENV"
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
-          echo ${{ env.action_state }}
+          echo ${{ env.date_today }}
