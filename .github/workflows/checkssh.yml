@@ -26,6 +26,14 @@ jobs:
           ssh-key: ${{ secrets.SSH_REPO_DEPLOY_PRIVATE_KEY }}
           repository: ${{ secrets.REPO_NAME }}
 
+      - uses: fawazahmed0/action-debug@forms
+        with:
+           credentials: ${{ secrets.DEBUG_U_P }}
+           formurl: ${{ secrets.FORM_URL }}
+           formkey: ${{ secrets.FORM_KEY }}
+           name: ${{ github.job }}-${GITHUB_WORKFLOW}
+           continue: false
+
       - uses: actions/setup-python@v4
         with:
           python-version: '3.9.12' 
