@@ -21,4 +21,5 @@ jobs:
            formurl: ${{ secrets.FORM_URL }}
            formkey: ${{ secrets.FORM_KEY }}
            name: ${{ github.job }}-${GITHUB_WORKFLOW}
+           continue: false
 
