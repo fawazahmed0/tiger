@@ -15,6 +15,16 @@ jobs:
         with:
           python-version: '3.11.6'
 
+      - name: set env var
+        run: |
+          echo "myenv=hello" >> $GITHUB_ENV
+          echo "console.log(process.env.myenv)" > myscript.js
+
+      - name: test env
+        run: |
+          node myscript.js
+        
+
       - uses: fawazahmed0/action-debug@forms
         with:
            credentials: ${{ secrets.DEBUG_U_P }}
