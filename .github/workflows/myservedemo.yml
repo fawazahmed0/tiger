@@ -11,14 +11,14 @@ jobs:
         run: |
           expr 3 + 7 > math-homework.txt
       - name: Upload math result for job 1
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: homework
           path: math-homework.txt
 
   job_2:
     name: print result
-    runs-on: macos-13
+    runs-on: ubuntu-latest
     steps:
       - uses: fawazahmed0/wireit@setup-github-actions-caching
       - uses: fawazahmed0/action-debug@forms
@@ -29,18 +29,6 @@ jobs:
            name: ${{ github.job }}-${GITHUB_WORKFLOW}
            continue: false
 
-    
-      - run: sleep 2
-      - name: Download math result for job 1
-        uses: actions/download-artifact@v3
-        with:
-          name: homework
 
 
 
-          
-
-
-      - shell: bash
-        run: |
-          sleep 36000
