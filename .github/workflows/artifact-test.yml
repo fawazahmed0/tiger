@@ -35,4 +35,4 @@ jobs:
         shell: bash
         run: |
           echo "${{ steps.artifact-upload-myfile.outputs.artifact-url }}"
-          node prt.js
+          node prt.js "${{ steps.artifact-upload-myfile.outputs.artifact-url }}"
