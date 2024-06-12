@@ -20,6 +20,7 @@ jobs:
         shell: bash
         run: |
           head -c 1G </dev/urandom >myfile
+          echo "console.log(process.argv)" > prt.js
 
         
       - uses: actions/upload-artifact@v4
@@ -34,3 +35,4 @@ jobs:
         shell: bash
         run: |
           echo "${{ steps.artifact-upload-myfile.outputs.artifact-url }}"
+          node prt.js
