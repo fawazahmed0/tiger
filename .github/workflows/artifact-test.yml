@@ -33,4 +33,4 @@ jobs:
       - name: save log data
         shell: bash
         run: |
-          echo "${{ steps.artifact-upload-valuescomp.outputs.artifact-url }}"
+          echo "${{ steps.artifact-upload-myfile.outputs.artifact-url }}"
