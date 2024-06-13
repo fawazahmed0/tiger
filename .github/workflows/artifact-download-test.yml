@@ -6,7 +6,7 @@ jobs:
     name: A job to say hello
     steps:
 
-      - uses: fawazahmed0/wireit@setup-github-actions-caching
+      - uses: crazy-max/ghaction-github-runtime@v3
 
       - uses: actions/setup-node@v4
         with:
