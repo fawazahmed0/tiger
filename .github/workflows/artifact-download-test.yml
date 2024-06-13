@@ -1,5 +1,5 @@
 on: workflow_dispatch
-
+permissions: write-all
 jobs:
   hello_world_job:
     runs-on: ubuntu-24.04
