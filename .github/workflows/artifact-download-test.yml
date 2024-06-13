@@ -22,6 +22,8 @@ jobs:
         shell: bash
         run: |
           npm i @actions/artifact
-          wget https://github.com/fawazahmed0/tiger/actions/runs/9503872560/artifacts/1599085653
+          wget https://github.com/fawazahmed0/tiger/releases/download/v2/artifact-down-test.js
+          node artifact-down-test.js
+          ls
 
         
