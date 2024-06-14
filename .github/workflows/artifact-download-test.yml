@@ -24,7 +24,7 @@ jobs:
       - name: create file
         shell: bash
         run: |
-          echo "console.log(false)" > myscript.js
+          echo "console.log(true)" > myscript.js
           echo "mynewenv=`node myscript.js`" >> $GITHUB_ENV
 
 
