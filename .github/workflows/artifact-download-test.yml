@@ -20,6 +20,18 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12.3'
+          
+      - name: create file
+        shell: bash
+        run: |
+          echo "console.log(true)" > myscript.js
+
+
+      - name: if test
+        if: ${{ `node myscript.js` }}
+        shell: bash
+        run: |
+          echo "test test"
 
         
       - name: test step
