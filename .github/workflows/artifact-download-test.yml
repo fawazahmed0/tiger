@@ -28,7 +28,7 @@ jobs:
 
 
       - name: if test
-        if: ${{ `node myscript.js` }}
+        if: ${{ node myscript.js }}
         shell: bash
         run: |
           echo "test test"
