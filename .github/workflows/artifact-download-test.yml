@@ -25,10 +25,11 @@ jobs:
         shell: bash
         run: |
           echo "console.log(true)" > myscript.js
+          echo "mynewenv=`node myscript.js`" >> $GITHUB_ENV
 
 
       - name: if test
-        if: ${{ node myscript.js }}
+        if: ${{ env.mynewenv }}
         shell: bash
         run: |
           echo "test test"
