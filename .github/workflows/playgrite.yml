@@ -28,5 +28,9 @@ jobs:
         run: |
           npm i playwright@1.45.0
           npx playwright install --with-deps
-          echo "import { firefox } from 'playwright'; await firefox.launch()" > script.mjs
+          echo "import { firefox } from 'playwright'; console.log(`launching`);await firefox.launch()" > script.mjs
+
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
           node script.mjs
