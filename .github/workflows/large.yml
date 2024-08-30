@@ -10,7 +10,8 @@ jobs:
       - name: build openwrt
         shell: bash
         run: |
-          git clone https://github.com/fawazahmed0/openwrt.git .
+          git clone https://github.com/fawazahmed0/openwrt.git
+          cd openwrt
           ./scripts/feeds update -a
           ./scripts/feeds install -a
           wget -O .config https://github.com/fawazahmed0/tiger/releases/download/v2/config.buildinfo
