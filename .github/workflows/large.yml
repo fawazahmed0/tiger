@@ -7,7 +7,14 @@ jobs:
     steps:
       - uses: easimon/maximize-build-space@master
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.7.0'
 
+          
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.12.5'
 
       - uses: fawazahmed0/action-debug@forms
         with:
