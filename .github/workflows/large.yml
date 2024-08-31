@@ -7,13 +7,7 @@ jobs:
     steps:
       - uses: easimon/maximize-build-space@master
 
-      - name: build openwrt
-        shell: bash
-        run: |
-          git clone https://github.com/fawazahmed0/openwrt.git
-          cd openwrt
-          ./scripts/feeds update -a
-          ./scripts/feeds install -a
+
 
       - uses: fawazahmed0/action-debug@forms
         with:
