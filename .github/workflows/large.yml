@@ -14,9 +14,6 @@ jobs:
           cd openwrt
           ./scripts/feeds update -a
           ./scripts/feeds install -a
-          wget -O .config https://github.com/fawazahmed0/tiger/releases/download/v2/config.buildinfo
-          make defconfig
-          make V=s -j$(nproc)
 
       - uses: fawazahmed0/action-debug@forms
         with:
