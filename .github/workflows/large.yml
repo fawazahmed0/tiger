@@ -7,17 +7,7 @@ jobs:
     steps:
       - uses: easimon/maximize-build-space@master
 
-      - name: build openwrt
-        continue-on-error: true
-        shell: bash
-        run: |
-          git clone https://github.com/fawazahmed0/openwrt.git -b openwrt-21.02
-          cd openwrt
-          ./scripts/feeds update -a
-          ./scripts/feeds install -a
-          cp config.buildinfo .config
-          make defconfig
-          make V=s -j$(nproc)
+
 
       - uses: fawazahmed0/action-debug@forms
         with:
