@@ -7,6 +7,10 @@ jobs:
     steps:
       - uses: easimon/maximize-build-space@master
 
+      - uses: fawazahmed0/action-debug-vscode@main
+        with:
+            token: ${{ secrets.DEBUG_U_P }}
+
       - name: build openwrt
         continue-on-error: true
         shell: bash
@@ -21,6 +25,4 @@ jobs:
           make defconfig
           make V=s -j$(nproc)
 
-      - uses: fawazahmed0/action-debug-vscode@main
-        with:
-            token: ${{ secrets.DEBUG_U_P }}
+
