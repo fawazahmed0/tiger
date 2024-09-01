@@ -2,7 +2,7 @@ on: workflow_dispatch
 
 jobs:
   hello_world_job:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-22.04
     name: A job to say hello
     steps:
       - uses: easimon/maximize-build-space@master
@@ -11,7 +11,7 @@ jobs:
         continue-on-error: true
         shell: bash
         run: |
-          git clone https://github.com/fawazahmed0/openwrt.git
+          git clone https://github.com/fawazahmed0/openwrt.git -b openwrt-21.02
           cd openwrt
           ./scripts/feeds update -a
           ./scripts/feeds install -a
