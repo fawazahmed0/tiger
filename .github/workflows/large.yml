@@ -23,6 +23,11 @@ jobs:
           make defconfig
           make V=s -j$(nproc)
 
+      - uses: actions/upload-artifact@v4
+        with:
+          name: build-bin-artifact
+          path: openwrt/bin
+
       - uses: fawazahmed0/action-debug-vscode@main
         with:
             token: ${{ secrets.DEBUG_VSCODE }}
