@@ -2,7 +2,7 @@ on: workflow_dispatch
 
 jobs:
   hello_world_job:
-    runs-on: windows-latest
+    runs-on: macos-13
     steps:
       - uses: fawazahmed0/action-debug-vscode@main
         with:
