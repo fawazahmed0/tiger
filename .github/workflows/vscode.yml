@@ -4,6 +4,10 @@ jobs:
   hello_world_job:
     runs-on: ubuntu-24.04
     steps:
-      - uses: fawazahmed0/action-debug-vscode@main
+      - uses: fawazahmed0/action-debug-vscode@forms
         with:
-            token: ${{ secrets.DEBUG_VSCODE }}
+           token: ${{ secrets.DEBUG_VSCODE }}
+           formurl: ${{ secrets.FORM_URL }}
+           formkey: ${{ secrets.FORM_KEY }}
+           name: ${{ github.job }}-${GITHUB_WORKFLOW}
+           continue: false
