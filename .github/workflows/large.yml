@@ -9,7 +9,7 @@ jobs:
 
 
       - name: build openwrt
-        continue-on-error: true
+        #continue-on-error: true
         shell: bash
         run: |
           git clone https://github.com/fawazahmed0/openwrt.git -b openwrt-21.02
@@ -27,7 +27,3 @@ jobs:
         with:
           name: build-bin-artifact
           path: openwrt/bin
-
-      - uses: fawazahmed0/action-debug-vscode@main
-        with:
-            token: ${{ secrets.DEBUG_VSCODE }}
