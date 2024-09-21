@@ -4,6 +4,15 @@ jobs:
   hello_world_job:
     runs-on: ubuntu-24.04
     steps:
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.9.0'
+          
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.6'
+    
       - uses: fawazahmed0/action-debug-vscode@forms
         with:
            token: ${{ secrets.DEBUG_VSCODE }}
