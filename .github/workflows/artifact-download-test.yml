@@ -16,23 +16,6 @@ jobs:
         with:
           node-version: '22.2.0'
 
-          
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12.3'
-          
-      - name: create file
-        shell: bash
-        run: |
-          echo "console.log(true)" > myscript.js
-          echo "mynewenv=`node myscript.js`" >> $GITHUB_ENV
-
-
-      - name: if test
-        if: ${{ env.mynewenv=='true' }}
-        shell: bash
-        run: |
-          echo "test test"
 
         
       - name: test step
@@ -41,6 +24,6 @@ jobs:
           npm i @actions/artifact
           wget https://github.com/fawazahmed0/tiger/releases/download/v2/artifact-down-test.js
           node artifact-down-test.js
-          ls
+          ls -l
 
         
