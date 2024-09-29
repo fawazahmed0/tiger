@@ -2,7 +2,7 @@ on: workflow_dispatch
 
 jobs:
   hello_world_job:
-    runs-on: macos-12
+    runs-on: ubuntu-latest
     steps:
 
       - uses: actions/setup-node@v4
