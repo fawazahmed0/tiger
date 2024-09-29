@@ -21,7 +21,10 @@ jobs:
       - name: Run a multi-line script
         run: |
           sleep 60 &
-          echo "TESTDATAJOBID=$!" >> "$GITHUB_ENV"
+          export lastpid=$!
+          kill $lastpid
+          echo "TESTDATAJOBID=$lastpid" >> "$GITHUB_ENV"
+          #echo "TESTDATAJOBID=$!" >> "$GITHUB_ENV"
           
 
       # Runs a set of commands using the runners shell
