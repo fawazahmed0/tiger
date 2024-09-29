@@ -20,14 +20,12 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
-          sleep 1000 &
+          sleep 60 &
           echo "TESTDATAJOBID=$!" >> "$GITHUB_ENV"
-          echo $TESTDATAJOBID
           
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
-          set -m
           echo $TESTDATAJOBID
-          fg $TESTDATAJOBID
+          tail --pid=$TESTDATAJOBID -f /dev/null
