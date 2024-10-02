@@ -5,6 +5,12 @@ jobs:
     runs-on: windows-latest
     steps:
 
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4
+        with:
+          repository: 'ArtifexSoftware/mupdf'
+          submodules: true
+
       - uses: actions/setup-node@v4
         with:
           node-version: '22.9.0'
