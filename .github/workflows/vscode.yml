@@ -2,15 +2,9 @@ on: workflow_dispatch
 
 jobs:
   hello_world_job:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
-
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v4
-        with:
-          repository: 'ArtifexSoftware/mupdf'
-          submodules: true
-
+    
       - uses: actions/setup-node@v4
         with:
           node-version: '22.9.0'
@@ -19,9 +13,6 @@ jobs:
         with:
           python-version: '3.12.6'
 
-      - name: Add msbuild to PATH
-        uses: microsoft/setup-msbuild@v2   
-        
       - uses: fawazahmed0/action-debug-vscode@forms
         with:
            token: ${{ secrets.DEBUG_VSCODE }}
