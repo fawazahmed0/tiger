@@ -11,7 +11,7 @@ jobs:
           
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.12.6'
+          python-version: '3.12.7'
 
       - uses: fawazahmed0/action-debug-vscode@forms
         with:
