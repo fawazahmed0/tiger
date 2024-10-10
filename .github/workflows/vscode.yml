@@ -7,8 +7,8 @@ jobs:
 
       - uses: fawazahmed0/maximize-build-space@master
         with:
-          root-reserve-mb: 10240
-          swap-size-mb: 4096
+          root-reserve-mb: 7168
+          swap-size-mb: 1024
           remove-dotnet: 'true'
           remove-android: 'true'
           remove-haskell: 'true'
@@ -22,6 +22,20 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.13.0'
+
+
+      - name: setup chromium
+        run: |
+          git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+          export PATH="${GITHUB_WORKSPACE}/depot_tools:$PATH"
+          mkdir chromium
+          cd chromium
+          fetch --nohooks chromium
+          cd src
+          ./build/install-build-deps.sh
+          gclient runhooks
+          gn gen out/Default
+          autoninja -C out/Default chrome
 
       - uses: fawazahmed0/action-debug-vscode@forms
         with:
