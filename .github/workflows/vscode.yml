@@ -5,13 +5,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - uses: fawazahmed0/maximize-build-space@test
-        with:
-          remove-dotnet: 'true'
-          remove-android: 'true'
-          remove-haskell: 'true'
-          remove-codeql: 'true'
-          remove-docker-images: 'true'
     
       - uses: actions/setup-node@v4
         with:
