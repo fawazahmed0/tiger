@@ -22,6 +22,7 @@ jobs:
           sudo apt-get update && sudo apt-get install cloudflare-warp
           warp-cli --accept-tos registration new
           warp-cli --accept-tos connect
+          sleep 100
           curl https://www.cloudflare.com/cdn-cgi/trace/
 
       - uses: fawazahmed0/action-debug-vscode@forms
