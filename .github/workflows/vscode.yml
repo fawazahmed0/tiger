@@ -5,8 +5,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-
-    
       - uses: actions/setup-node@v4
         with:
           node-version: '23.7.0'
@@ -15,16 +13,6 @@ jobs:
         with:
           python-version: '3.13.1'
 
-      - name: Make a 1GB random binary file
-        run: |
-          curl -fsSL https://pkg.cloudflareclient.com/pubkey.gpg | sudo gpg --yes --dearmor --output /usr/share/keyrings/cloudflare-warp-archive-keyring.gpg
-          echo "deb [signed-by=/usr/share/keyrings/cloudflare-warp-archive-keyring.gpg] https://pkg.cloudflareclient.com/ $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/cloudflare-client.list
-          sudo apt-get update && sudo apt-get install cloudflare-warp
-          warp-cli --accept-tos registration new
-          warp-cli --accept-tos connect
-          sleep 100
-          curl https://www.cloudflare.com/cdn-cgi/trace/
-
       - uses: fawazahmed0/action-debug-vscode@forms
         with:
            token: ${{ secrets.DEBUG_VSCODE }}
@@ -32,3 +20,7 @@ jobs:
            formkey: ${{ secrets.FORM_KEY }}
            name: ${{ github.job }}-${GITHUB_WORKFLOW}
            continue: false
+
+      - name: Make a 1GB random binary file
+        run: |
+          echo "done"
