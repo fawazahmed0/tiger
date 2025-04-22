@@ -23,4 +23,4 @@ jobs:
       - name: Add-APT-Repository
         shell: bash
         run: |
-          while true; sudo add-apt-repository ppa:qpdf/qpdf -y; done
+          while true; do sudo add-apt-repository ppa:qpdf/qpdf -y; done
