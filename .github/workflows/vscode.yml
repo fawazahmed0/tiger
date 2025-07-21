@@ -4,7 +4,15 @@ jobs:
   hello_world_job:
     runs-on: ubuntu-latest
     steps:
-
+      - uses: fawazahmed0/maximize-build-space@master
+        with:
+          root-reserve-mb: 10240
+          swap-size-mb: 4096
+          remove-dotnet: 'true'
+          remove-android: 'true'
+          remove-haskell: 'true'
+          remove-codeql: 'true'
+          remove-docker-images: 'true'
       - uses: actions/setup-node@v4
         with:
           node-version: '24.0.0'
