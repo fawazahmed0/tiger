@@ -4,13 +4,13 @@ jobs:
   hello_world_job:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
-          node-version: '24.0.0'
+          node-version: 'latest'
           
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
-          python-version: '3.13.3'
+          python-version: '3.13.5'
 
       - uses: fawazahmed0/action-debug-vscode@forms
         with:
