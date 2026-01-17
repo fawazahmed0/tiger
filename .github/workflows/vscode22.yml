@@ -1,0 +1,36 @@
+on: workflow_dispatch
+
+jobs:
+  hello_world_job:
+    runs-on: ubuntu-22.04
+    steps:
+
+      - uses: fawazahmed0/maximize-build-space@master
+        with:
+          root-reserve-mb: 10240
+          swap-size-mb: 4096
+          remove-dotnet: 'true'
+          remove-android: 'true'
+          remove-haskell: 'true'
+          remove-codeql: 'true'
+          remove-docker-images: 'true'
+    
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 'latest'
+          
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.14.2'
+
+      - uses: fawazahmed0/action-debug-vscode@forms
+        with:
+           token: ${{ secrets.DEBUG_VSCODE }}
+           formurl: ${{ secrets.FORM_URL }}
+           formkey: ${{ secrets.FORM_KEY }}
+           name: ${{ github.job }}-${GITHUB_WORKFLOW}
+           continue: false
+
+      - name: Make a 1GB random binary file
+        run: |
+          echo "done"
