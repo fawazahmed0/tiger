@@ -1,0 +1,43 @@
+on: workflow_dispatch
+
+jobs:
+  hello_world_job:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: fawazahmed0/maximize-build-space@master
+        with:
+          root-reserve-mb: 10240
+          swap-size-mb: 4096
+          remove-dotnet: "true"
+          remove-android: "true"
+          remove-haskell: "true"
+          remove-codeql: "true"
+          remove-docker-images: "true"
+          
+      - uses: fawazahmed0/wireit@setup-github-actions-caching
+      - uses: actions/setup-python@v6
+        with:
+          python-version: 3.13.11
+          cache: pip
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 25.2.1
+          cache: npm
+      - name: Setup for building ubuntu binaries
+        shell: bash
+        run: |
+          sudo mkdir -p /media/MY_RAM_DISK
+          sudo mount -t tmpfs -o size=512M tmpfs /media/MY_RAM_DISK/
+          sudo ln -s /media /Volumes
+      - name: Install dependencies
+        shell: bash
+        run: |
+          curl -f -L -o /usr/local/bin/qpdf https://github.com/qpdf/qpdf/releases/download/v12.3.0/qpdf-12.3.0-x86_64.AppImage && chmod +x /usr/local/bin/qpdf
+          sudo apt-get update -y
+          wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-`dpkg --print-architecture`.deb
+          sudo apt install -y ./cloudflared-linux-`dpkg --print-architecture`.deb
+          rm ./cloudflared-linux-`dpkg --print-architecture`.deb
+          sudo apt-get install -y tesseract-ocr libtesseract-dev
+          docker run --name mycont --rm -itd -v "$(pwd):$(pwd)" -v "/Volumes:/Volumes" -w "$(pwd)" debian:experimental-20240926
+          docker exec -i mycont apt-get update
+          docker exec -i mycont apt-get install poppler-utils/unstable -y
