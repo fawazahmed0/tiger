@@ -14,13 +14,7 @@ jobs:
         with:
           python-version: '3.14.2'
 
-      - uses: fawazahmed0/action-debug-vscode@forms
-        with:
-           token: ${{ secrets.DEBUG_VSCODE }}
-           formurl: ${{ secrets.FORM_URL }}
-           formkey: ${{ secrets.FORM_KEY }}
-           name: ${{ github.job }}-${GITHUB_WORKFLOW}
-           continue: false
+      - uses: fawazahmed0/action-debug-vscode@main
 
       - name: Make a 1GB random binary file
         run: |
