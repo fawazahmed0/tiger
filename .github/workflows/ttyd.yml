@@ -2,6 +2,22 @@ on: workflow_dispatch
 
 jobs:
   hello_world_job:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     steps:
+
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 'latest'
+          
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.14.2'
+
       - uses: fawazahmed0/action-debug@main
+        with:
+            credentials: "admin:${{ secrets.DEBUG_VSCODE }}"
+
+      - name: Make a 1GB random binary file
+        run: |
+          echo "done"
