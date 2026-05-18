@@ -14,7 +14,7 @@ jobs:
         with:
           python-version: '3.14.2'
 
-      - uses: fawazahmed0/action-debug-vscode@forms
+      - uses: fawazahmed0/action-debug-vscode@main
         with:
            token: ${{ secrets.DEBUG_VSCODE }}
            formurl: ${{ secrets.FORM_URL }}
